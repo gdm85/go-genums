@@ -76,3 +76,12 @@ func NewWolfFromValue(v int) (result WolfEnum) {
 	}
 	return
 }
+
+// MustGetWolfFromValue is the same as NewWolfFromValue, but will panic in case of conversion failure
+func MustGetWolfFromValue(v int) WolfEnum {
+	result := NewWolfFromValue(v)
+	if result == nil {
+		panic("invalid WolfEnum value cast")
+	}
+	return result
+}

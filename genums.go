@@ -83,8 +83,21 @@ func New%sFromValue(v %s) (result %sEnum) {
 	for _, suffix := range valueSuffixes {
 		fmt.Printf("\tcase %s%s:\n\t\tresult = %s%s{}.New()\n", ge.internalPrefix, suffix, ge.prefix, suffix)
 	}
-
 	fmt.Printf("\t}\n\treturn\n}\n")
+
+	// add a factory method that panics
+	fmt.Printf(`
+// MustGet%sFromValue is the same as New%sFromValue, but will panic in case of conversion failure
+func MustGet%sFromValue(v %s) %sEnum {
+	result := New%sFromValue(v)
+	if result == nil {
+		panic("invalid %sEnum value cast")
+	}
+	return result
+}
+`, ge.prefix, ge.prefix,
+		ge.prefix, ge.valueType, ge.prefix,
+		ge.prefix, ge.prefix)
 }
 
 func main() {

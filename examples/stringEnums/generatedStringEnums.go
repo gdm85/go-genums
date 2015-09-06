@@ -76,3 +76,12 @@ func NewColorFromValue(v string) (result ColorEnum) {
 	}
 	return
 }
+
+// MustGetColorFromValue is the same as NewColorFromValue, but will panic in case of conversion failure
+func MustGetColorFromValue(v string) ColorEnum {
+	result := NewColorFromValue(v)
+	if result == nil {
+		panic("invalid ColorEnum value cast")
+	}
+	return result
+}
