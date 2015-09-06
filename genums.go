@@ -57,17 +57,17 @@ func (ge genumsContext) generateCode(valueSuffixes []string) {
 			ge.prefix, suffix, ge.internalPrefix, suffix,
 			ge.prefix, suffix, internalGeneratedPrefix)
 
-		fmt.Printf("// New is the constructor for a brand new %sEnum with value '%s%s'\nfunc (eb %s%s) New() %sEnum { return %s%s{%sEnumBase{%s%s}} }\n\n",
+		fmt.Printf("// New is the constructor for a brand new %sEnum with value '%s%s'\nfunc (%s%s) New() %sEnum { return %s%s{%sEnumBase{%s%s}} }\n\n",
 			ge.prefix, ge.internalPrefix, suffix,
 			ge.prefix, suffix, ge.prefix,
 			ge.prefix, suffix, internalGeneratedPrefix, ge.internalPrefix, suffix)
 
-		fmt.Printf("// String returns always \"%s%s\" for this enum type\nfunc (eb %s%s) String() string { return \"%s%s\" }\n\n",
+		fmt.Printf("// String returns always \"%s%s\" for this enum type\nfunc (%s%s) String() string { return \"%s%s\" }\n\n",
 			ge.prefix, suffix,
 			ge.prefix, suffix,
 			ge.prefix, suffix)
 
-		fmt.Printf("// unique%sMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature\nfunc (%s%s) unique%sMethod(){}\n",
+		fmt.Printf("// unique%sMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature\nfunc (%s%s) unique%sMethod() {}\n\n",
 			ge.prefix, ge.prefix, suffix, ge.prefix)
 	}
 

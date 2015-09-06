@@ -21,10 +21,10 @@ func (eb colorEnumBase) String() string { return "" }
 type ColorYellow struct{ colorEnumBase }
 
 // New is the constructor for a brand new ColorEnum with value 'colourYellow'
-func (eb ColorYellow) New() ColorEnum { return ColorYellow{colorEnumBase{colourYellow}} }
+func (ColorYellow) New() ColorEnum { return ColorYellow{colorEnumBase{colourYellow}} }
 
 // String returns always "ColorYellow" for this enum type
-func (eb ColorYellow) String() string { return "ColorYellow" }
+func (ColorYellow) String() string { return "ColorYellow" }
 
 // uniqueColorMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
 func (ColorYellow) uniqueColorMethod() {}
@@ -33,10 +33,10 @@ func (ColorYellow) uniqueColorMethod() {}
 type ColorRed struct{ colorEnumBase }
 
 // New is the constructor for a brand new ColorEnum with value 'colourRed'
-func (eb ColorRed) New() ColorEnum { return ColorRed{colorEnumBase{colourRed}} }
+func (ColorRed) New() ColorEnum { return ColorRed{colorEnumBase{colourRed}} }
 
 // String returns always "ColorRed" for this enum type
-func (eb ColorRed) String() string { return "ColorRed" }
+func (ColorRed) String() string { return "ColorRed" }
 
 // uniqueColorMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
 func (ColorRed) uniqueColorMethod() {}
@@ -45,10 +45,10 @@ func (ColorRed) uniqueColorMethod() {}
 type ColorBrown struct{ colorEnumBase }
 
 // New is the constructor for a brand new ColorEnum with value 'colourBrown'
-func (eb ColorBrown) New() ColorEnum { return ColorBrown{colorEnumBase{colourBrown}} }
+func (ColorBrown) New() ColorEnum { return ColorBrown{colorEnumBase{colourBrown}} }
 
 // String returns always "ColorBrown" for this enum type
-func (eb ColorBrown) String() string { return "ColorBrown" }
+func (ColorBrown) String() string { return "ColorBrown" }
 
 // uniqueColorMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
 func (ColorBrown) uniqueColorMethod() {}
@@ -57,10 +57,10 @@ func (ColorBrown) uniqueColorMethod() {}
 type ColorGreen struct{ colorEnumBase }
 
 // New is the constructor for a brand new ColorEnum with value 'colourGreen'
-func (eb ColorGreen) New() ColorEnum { return ColorGreen{colorEnumBase{colourGreen}} }
+func (ColorGreen) New() ColorEnum { return ColorGreen{colorEnumBase{colourGreen}} }
 
 // String returns always "ColorGreen" for this enum type
-func (eb ColorGreen) String() string { return "ColorGreen" }
+func (ColorGreen) String() string { return "ColorGreen" }
 
 // uniqueColorMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
 func (ColorGreen) uniqueColorMethod() {}
