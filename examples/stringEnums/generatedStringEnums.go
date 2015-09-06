@@ -3,7 +3,6 @@ package examples
 // ColorEnum is the the enum interface that can be used
 type ColorEnum interface {
 	String() string
-	Name() string
 	Value() string
 }
 
@@ -13,12 +12,9 @@ type colorEnumBase struct{ value string }
 // Value() returns the enum value
 func (eb colorEnumBase) Value() string { return eb.value }
 
-// String() returns the name of the enum
-func (eb colorEnumBase) String() string { return eb.Name() }
-
-// Name() is the enum name as you use it in Go code,
+// String() returns the enum name as you use it in Go code,
 // needs to be overriden by inheriting types
-func (eb colorEnumBase) Name() string { return "" }
+func (eb colorEnumBase) String() string { return "" }
 
 // ColorYellow is the enum type for 'colourYellow' value
 type ColorYellow struct{ colorEnumBase }
@@ -26,11 +22,8 @@ type ColorYellow struct{ colorEnumBase }
 // New is the constructor for a brand new ColorEnum with value 'colourYellow'
 func (eb ColorYellow) New() ColorEnum { return ColorYellow{colorEnumBase{colourYellow}} }
 
-// String returns the enum name
-func (eb ColorYellow) String() string { return eb.Name() }
-
-// Name returns always "ColorYellow" for this enum type
-func (eb ColorYellow) Name() string { return "ColorYellow" }
+// String returns always "ColorYellow" for this enum type
+func (eb ColorYellow) String() string { return "ColorYellow" }
 
 // ColorRed is the enum type for 'colourRed' value
 type ColorRed struct{ colorEnumBase }
@@ -38,11 +31,8 @@ type ColorRed struct{ colorEnumBase }
 // New is the constructor for a brand new ColorEnum with value 'colourRed'
 func (eb ColorRed) New() ColorEnum { return ColorRed{colorEnumBase{colourRed}} }
 
-// String returns the enum name
-func (eb ColorRed) String() string { return eb.Name() }
-
-// Name returns always "ColorRed" for this enum type
-func (eb ColorRed) Name() string { return "ColorRed" }
+// String returns always "ColorRed" for this enum type
+func (eb ColorRed) String() string { return "ColorRed" }
 
 // ColorBrown is the enum type for 'colourBrown' value
 type ColorBrown struct{ colorEnumBase }
@@ -50,11 +40,8 @@ type ColorBrown struct{ colorEnumBase }
 // New is the constructor for a brand new ColorEnum with value 'colourBrown'
 func (eb ColorBrown) New() ColorEnum { return ColorBrown{colorEnumBase{colourBrown}} }
 
-// String returns the enum name
-func (eb ColorBrown) String() string { return eb.Name() }
-
-// Name returns always "ColorBrown" for this enum type
-func (eb ColorBrown) Name() string { return "ColorBrown" }
+// String returns always "ColorBrown" for this enum type
+func (eb ColorBrown) String() string { return "ColorBrown" }
 
 // ColorGreen is the enum type for 'colourGreen' value
 type ColorGreen struct{ colorEnumBase }
@@ -62,11 +49,8 @@ type ColorGreen struct{ colorEnumBase }
 // New is the constructor for a brand new ColorEnum with value 'colourGreen'
 func (eb ColorGreen) New() ColorEnum { return ColorGreen{colorEnumBase{colourGreen}} }
 
-// String returns the enum name
-func (eb ColorGreen) String() string { return eb.Name() }
-
-// Name returns always "ColorGreen" for this enum type
-func (eb ColorGreen) Name() string { return "ColorGreen" }
+// String returns always "ColorGreen" for this enum type
+func (eb ColorGreen) String() string { return "ColorGreen" }
 
 var internalColorEnumValues = []ColorEnum{
 	ColorYellow{}.New(),

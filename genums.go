@@ -20,7 +20,6 @@ const outputTemplate = `package %s
 // %sEnum is the the enum interface that can be used
 type %sEnum interface {
 	String() string
-	Name() string
 	Value() %s
 }
 
@@ -30,12 +29,9 @@ type %sEnumBase struct{ value %s }
 // Value() returns the enum value
 func (eb %sEnumBase) Value() %s { return eb.value }
 
-// String() returns the name of the enum
-func (eb %sEnumBase) String() string { return eb.Name() }
-
-// Name() is the enum name as you use it in Go code,
+// String() returns the enum name as you use it in Go code,
 // needs to be overriden by inheriting types
-func (eb %sEnumBase) Name() string { return "" }
+func (eb %sEnumBase) String() string { return "" }
 
 `
 
@@ -51,7 +47,6 @@ func (ge genumsContext) generateCode(valueSuffixes []string) {
 		internalGeneratedPrefix,
 		internalGeneratedPrefix, ge.valueType,
 		internalGeneratedPrefix, ge.valueType,
-		internalGeneratedPrefix,
 		internalGeneratedPrefix)
 
 	// generate value types
@@ -65,10 +60,7 @@ func (ge genumsContext) generateCode(valueSuffixes []string) {
 			ge.prefix, suffix, ge.prefix,
 			ge.prefix, suffix, internalGeneratedPrefix, ge.internalPrefix, suffix)
 
-		fmt.Printf("// String returns the enum name\nfunc (eb %s%s) String() string { return eb.Name() }\n\n",
-			ge.prefix, suffix)
-
-		fmt.Printf("// Name returns always \"%s%s\" for this enum type\nfunc (eb %s%s) Name() string { return \"%s%s\" }\n\n",
+		fmt.Printf("// String returns always \"%s%s\" for this enum type\nfunc (eb %s%s) String() string { return \"%s%s\" }\n\n",
 			ge.prefix, suffix,
 			ge.prefix, suffix,
 			ge.prefix, suffix)
