@@ -8,7 +8,7 @@ go-genums:
 examples: examples/intEnums/generatedIntEnums.go examples/stringEnums/generatedStringEnums.go examples/intEnums/intEnums
 
 examples/intEnums/generatedIntEnums.go:
-	./go-genums Wolf piggy int examples/intEnums/intEnums.go > $@
+	./go-genums Wolf piggy int examples/intEnums/main.go > $@
 
 examples/intEnums/intEnums:
 	cd examples/intEnums && go build

@@ -2,6 +2,14 @@ package main
 
 import "fmt"
 
+// this is the user-provided canonical Go-style enum made up of constants
+const (
+	piggy1 = iota
+	piggy2
+	piggy3
+	piggy4
+)
+
 func main() {
 	for _, wolf := range WolfEnumValues() {
 		fmt.Println("Enum value: ", wolf)
