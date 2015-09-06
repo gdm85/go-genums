@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	for _, ev := range WolfEnumValues() {
-		fmt.Println("Enum value: ", ev)
+	for _, wolf := range WolfEnumValues() {
+		fmt.Println("Enum value: ", wolf)
 	}
 
 	ev1 := Wolf1{}.New()
@@ -40,5 +40,16 @@ func main() {
 	ev1 = NewWolfFromValue(100)
 	if ev1 != nil {
 		panic("imaginary wolf created!")
+	}
+
+	// example of safer evaluation with a type switch
+	// loop will pick only odd wolfs
+	for _, wolf := range WolfEnumValues() {
+		switch wolf.(type) {
+		case Wolf1, Wolf3:
+			fmt.Println("Found an odd wolf:", wolf)
+		default:
+			// ignore all other wolves
+		}
 	}
 }
