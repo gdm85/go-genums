@@ -4,6 +4,7 @@ package main
 type WolfEnum interface {
 	String() string
 	Value() int
+	uniqueWolfMethod()
 }
 
 // wolfEnumBase is the internal, non-exported type
@@ -25,6 +26,9 @@ func (eb Wolf1) New() WolfEnum { return Wolf1{wolfEnumBase{piggy1}} }
 // String returns always "Wolf1" for this enum type
 func (eb Wolf1) String() string { return "Wolf1" }
 
+// uniqueWolfMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
+func (Wolf1) uniqueWolfMethod() {}
+
 // Wolf2 is the enum type for 'piggy2' value
 type Wolf2 struct{ wolfEnumBase }
 
@@ -33,6 +37,9 @@ func (eb Wolf2) New() WolfEnum { return Wolf2{wolfEnumBase{piggy2}} }
 
 // String returns always "Wolf2" for this enum type
 func (eb Wolf2) String() string { return "Wolf2" }
+
+// uniqueWolfMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
+func (Wolf2) uniqueWolfMethod() {}
 
 // Wolf3 is the enum type for 'piggy3' value
 type Wolf3 struct{ wolfEnumBase }
@@ -43,6 +50,9 @@ func (eb Wolf3) New() WolfEnum { return Wolf3{wolfEnumBase{piggy3}} }
 // String returns always "Wolf3" for this enum type
 func (eb Wolf3) String() string { return "Wolf3" }
 
+// uniqueWolfMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
+func (Wolf3) uniqueWolfMethod() {}
+
 // Wolf4 is the enum type for 'piggy4' value
 type Wolf4 struct{ wolfEnumBase }
 
@@ -51,6 +61,9 @@ func (eb Wolf4) New() WolfEnum { return Wolf4{wolfEnumBase{piggy4}} }
 
 // String returns always "Wolf4" for this enum type
 func (eb Wolf4) String() string { return "Wolf4" }
+
+// uniqueWolfMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
+func (Wolf4) uniqueWolfMethod() {}
 
 var internalWolfEnumValues = []WolfEnum{
 	Wolf1{}.New(),

@@ -21,6 +21,7 @@ const outputTemplate = `package %s
 type %sEnum interface {
 	String() string
 	Value() %s
+	unique%sMethod()
 }
 
 // %sEnumBase is the internal, non-exported type
@@ -44,6 +45,7 @@ func (ge genumsContext) generateCode(valueSuffixes []string) {
 		ge.prefix,
 		ge.prefix,
 		ge.valueType,
+		ge.prefix,
 		internalGeneratedPrefix,
 		internalGeneratedPrefix, ge.valueType,
 		internalGeneratedPrefix, ge.valueType,
@@ -64,6 +66,9 @@ func (ge genumsContext) generateCode(valueSuffixes []string) {
 			ge.prefix, suffix,
 			ge.prefix, suffix,
 			ge.prefix, suffix)
+
+		fmt.Printf("// unique%sMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature\nfunc (%s%s) unique%sMethod(){}\n",
+			ge.prefix, ge.prefix, suffix, ge.prefix)
 	}
 
 	// generate collection of all valid values

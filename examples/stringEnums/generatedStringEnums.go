@@ -4,6 +4,7 @@ package examples
 type ColorEnum interface {
 	String() string
 	Value() string
+	uniqueColorMethod()
 }
 
 // colorEnumBase is the internal, non-exported type
@@ -25,6 +26,9 @@ func (eb ColorYellow) New() ColorEnum { return ColorYellow{colorEnumBase{colourY
 // String returns always "ColorYellow" for this enum type
 func (eb ColorYellow) String() string { return "ColorYellow" }
 
+// uniqueColorMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
+func (ColorYellow) uniqueColorMethod() {}
+
 // ColorRed is the enum type for 'colourRed' value
 type ColorRed struct{ colorEnumBase }
 
@@ -33,6 +37,9 @@ func (eb ColorRed) New() ColorEnum { return ColorRed{colorEnumBase{colourRed}} }
 
 // String returns always "ColorRed" for this enum type
 func (eb ColorRed) String() string { return "ColorRed" }
+
+// uniqueColorMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
+func (ColorRed) uniqueColorMethod() {}
 
 // ColorBrown is the enum type for 'colourBrown' value
 type ColorBrown struct{ colorEnumBase }
@@ -43,6 +50,9 @@ func (eb ColorBrown) New() ColorEnum { return ColorBrown{colorEnumBase{colourBro
 // String returns always "ColorBrown" for this enum type
 func (eb ColorBrown) String() string { return "ColorBrown" }
 
+// uniqueColorMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
+func (ColorBrown) uniqueColorMethod() {}
+
 // ColorGreen is the enum type for 'colourGreen' value
 type ColorGreen struct{ colorEnumBase }
 
@@ -51,6 +61,9 @@ func (eb ColorGreen) New() ColorEnum { return ColorGreen{colorEnumBase{colourGre
 
 // String returns always "ColorGreen" for this enum type
 func (eb ColorGreen) String() string { return "ColorGreen" }
+
+// uniqueColorMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
+func (ColorGreen) uniqueColorMethod() {}
 
 var internalColorEnumValues = []ColorEnum{
 	ColorYellow{}.New(),
