@@ -55,3 +55,8 @@ Examples
 ========
 
 See ``examples/`` for an integer enum and string enum example.
+
+License
+=======
+
+go-genums is licensed under an [MIT license](LICENSE.md).
