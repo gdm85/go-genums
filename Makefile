@@ -1,23 +1,29 @@
-.PHONY := all examples intEnums stringEnums
+.PHONY := all examples examples-generated
+.DEFAULT := all
 
-all: go-genums examples
+all: genums examples-generated examples
 
-go-genums:
-	go build
+genums:
+	go build -o genums
 
-examples: examples/intEnums/generatedIntEnums.go examples/stringEnums/generatedStringEnums.go examples/intEnums/intEnums examples/stringEnums/stringEnums
+examples-generated: examples/dayEnum/generatedEnum.go examples/colorEnum/generatedEnum.go examples/carEnum/generatedEnum.go
 
-examples/intEnums/generatedIntEnums.go:
-	cd examples/intEnums && go generate
+examples/dayEnum/generatedEnum.go examples/colorEnum/generatedEnum.go examples/carEnum/generatedEnum.go: %/generatedEnum.go:
+	cd $* && go generate
 
-examples/intEnums/intEnums:
-	cd examples/intEnums && go build
+examples: examples/dayEnum/dayEnum examples/colorEnum/colorEnum examples/carEnum/carEnum
 
-examples/stringEnums/generatedStringEnums.go:
-	cd stringEnums && go generate
+examples/dayEnum/dayEnum: examples/dayEnum/generatedEnum.go
+	cd examples/dayEnum && go build
 
-examples/stringEnums/stringEnums:
-	cd examples/stringEnums && go build
+examples/colorEnum/colorEnum: examples/colorEnum/generatedEnum.go
+	cd examples/colorEnum && go build
+
+examples/carEnum/carEnum: examples/carEnum/generatedEnum.go
+	cd examples/carEnum && go build
 
 clean:
-	rm -f go-genums examples/stringEnums/generatedStringEnums.go examples/intEnums/generatedIntEnums.go examples/intEnums/intEnums
+	rm -f genums \
+			examples/dayEnum/generatedEnum.go examples/dayEnum/dayEnum \
+			examples/colorEnum/generatedEnum.go examples/colorEnum/colorEnum \
+			examples/carEnum/generatedEnum.go examples/carEnum/carEnum

@@ -1,3 +1,4 @@
-go-genums
-examples/intEnums/intEnums
-examples/stringEnums/stringEnums
+genums
+examples/colorEnum/colorEnum
+examples/dayEnum/dayEnum
+examples/carEnum/carEnum
