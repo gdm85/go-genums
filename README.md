@@ -47,7 +47,7 @@ switch a.(type) {
 
 If you put the generated code in a package the ``.value`` field becomes inaccessible, thus all enum values will be immutable and even safer to use.
 
-Each enum value has a ``String()`` method that returns its descriptive name (same as Go) and a ``Value()`` method that returns the correspondent value defined in the user-provided source.
+Each enum value has a ``String()`` method that returns its descriptive name (same as Go identifier) and a ``Value()`` method that returns the correspondent value defined in the user-provided source.
 
 See also: [examples/intEnums/main.go](examples/intEnums/main.go)
 

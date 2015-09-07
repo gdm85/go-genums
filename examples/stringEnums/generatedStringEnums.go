@@ -1,4 +1,4 @@
-package examples
+package main
 
 // ColorEnum is the the enum interface that can be used
 type ColorEnum interface {

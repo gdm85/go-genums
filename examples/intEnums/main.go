@@ -1,5 +1,7 @@
 package main
 
+//go:generate sh -c "go run ../../genums.go Wolf piggy int main.go > generatedIntEnums.go"
+
 import "fmt"
 
 // this is the user-provided canonical Go-style enum made up of constants
