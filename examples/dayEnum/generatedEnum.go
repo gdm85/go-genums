@@ -5,19 +5,31 @@ package main
 // DayEnum is the the enum interface that can be used
 type DayEnum interface {
 	String() string
-	Value() int
+	Value() dayEnum
 	uniqueDayMethod()
 }
 
 // dayEnumBase is the internal, non-exported type
-type dayEnumBase struct{ value int }
+type dayEnumBase struct{ value dayEnum }
 
 // Value() returns the enum value
-func (eb dayEnumBase) Value() int { return eb.value }
+func (eb dayEnumBase) Value() dayEnum { return eb.value }
 
 // String() returns the enum name as you use it in Go code,
 // needs to be overriden by inheriting types
 func (eb dayEnumBase) String() string { return "" }
+
+// Sunday is the enum type for 'daySunday' value
+type Sunday struct{ dayEnumBase }
+
+// New is the constructor for a brand new DayEnum with value 'daySunday'
+func (Sunday) New() DayEnum { return Sunday{dayEnumBase{daySunday}} }
+
+// String returns always "Sunday" for this enum type
+func (Sunday) String() string { return "Sunday" }
+
+// uniqueDayMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
+func (Sunday) uniqueDayMethod() {}
 
 // Monday is the enum type for 'dayMonday' value
 type Monday struct{ dayEnumBase }
@@ -91,34 +103,24 @@ func (Saturday) String() string { return "Saturday" }
 // uniqueDayMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
 func (Saturday) uniqueDayMethod() {}
 
-// Sunday is the enum type for 'daySunday' value
-type Sunday struct{ dayEnumBase }
-
-// New is the constructor for a brand new DayEnum with value 'daySunday'
-func (Sunday) New() DayEnum { return Sunday{dayEnumBase{daySunday}} }
-
-// String returns always "Sunday" for this enum type
-func (Sunday) String() string { return "Sunday" }
-
-// uniqueDayMethod() guarantees that the enum interface cannot be mis-assigned with others defined with an otherwise identical signature
-func (Sunday) uniqueDayMethod() {}
-
 var internalDayEnumValues = []DayEnum{
+	Sunday{}.New(),
 	Monday{}.New(),
 	Tuesday{}.New(),
 	Wednesday{}.New(),
 	Thursday{}.New(),
 	Friday{}.New(),
 	Saturday{}.New(),
-	Sunday{}.New(),
 }
 
 // DayEnumValues will return a slice of all allowed enum value types
 func DayEnumValues() []DayEnum { return internalDayEnumValues[:] }
 
 // NewDayFromValue will generate a valid enum from a value, or return nil in case of invalid value
-func NewDayFromValue(v int) (result DayEnum) {
+func NewDayFromValue(v dayEnum) (result DayEnum) {
 	switch v {
+	case daySunday:
+		result = Sunday{}.New()
 	case dayMonday:
 		result = Monday{}.New()
 	case dayTuesday:
@@ -131,14 +133,12 @@ func NewDayFromValue(v int) (result DayEnum) {
 		result = Friday{}.New()
 	case daySaturday:
 		result = Saturday{}.New()
-	case daySunday:
-		result = Sunday{}.New()
 	}
 	return
 }
 
 // MustGetDayFromValue is the same as NewDayFromValue, but will panic in case of conversion failure
-func MustGetDayFromValue(v int) DayEnum {
+func MustGetDayFromValue(v dayEnum) DayEnum {
 	result := NewDayFromValue(v)
 	if result == nil {
 		panic("invalid DayEnum value cast")

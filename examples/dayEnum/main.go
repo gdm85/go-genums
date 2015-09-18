@@ -8,7 +8,7 @@ func main() {
 		fmt.Println(day)
 	}
 
-	day := NewDayFromValue(1)
+	day := NewDayFromValue(2)
 	if day == nil {
 		panic("could not create Tuesday!")
 	}
